@@ -34,13 +34,6 @@ in
         vendorId = "0bda";
         productId = "8153";
       }
-      # TODO This is already passed, but where to?
-      # {
-      #   # Appears to be a bluetooth device
-      #   bus = "usb";
-      #   vendorid = "1546";
-      #   productid = "01a9";
-      # }
       # Passthrough yubikeys
       # TODO Vhotplug doesn't support wildcards, hence the patched vhotplug
       # {
@@ -63,10 +56,6 @@ in
     ];
 
     services = {
-      # Should not be necessary, ssh keys
-      # fmo-psk-distribution-service-host = {
-      #   enable = true;
-      # }; # services.fmo-psk-distribution-service-host
 
       # This enables to set dynamic port forwarding rules
       # TODO check if this is necessary and why
