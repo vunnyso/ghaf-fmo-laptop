@@ -19,4 +19,4 @@ jobs:
       - name: Install nix
         uses: cachix/install-nix-action@v30
       - name: Run all checks
-        run: nix flake check
+        run: nix flake check --option accept-flake-config true
