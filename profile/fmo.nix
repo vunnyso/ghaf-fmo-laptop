@@ -1,15 +1,12 @@
 # Copyright 2022-2025 TII (SSRC) and the Ghaf contributors
 # SPDX-License-Identifier: Apache-2.0
-{ inputs, ...}:
+{ inputs, ... }:
 {
   config,
   pkgs,
   lib,
   ...
 }:
-let
-  cfg = config.ghaf.reference.profiles.fmo;
-in
 {
   imports = [
     # Ghaf imports
