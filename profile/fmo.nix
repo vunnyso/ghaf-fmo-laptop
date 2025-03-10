@@ -79,7 +79,7 @@
           chrome-vm = true;
           zathura-vm = true;
           enabled-app-vms = [
-            (import ../modules/microvm/docker/default.nix { inherit pkgs lib config; })
+            (import ../modules/microvm/docker/vm.nix { inherit pkgs lib config; })
           ];
         };
         services = {

@@ -14,6 +14,6 @@
   borderColor = "#000000";
   applications = [ ];
   extraModules = [
-    (import ./dockervm.nix { inherit pkgs lib config; })
+    (import ./config.nix { inherit pkgs lib config; })
   ];
 }

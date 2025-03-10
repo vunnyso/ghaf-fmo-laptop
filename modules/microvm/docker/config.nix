@@ -8,7 +8,7 @@
   ...
 }:
 let
-  inherit (lib) optionals hasAttr;
+  inherit (lib) optionals hasAttr mkForce;
 in
 {
   imports = [
@@ -31,12 +31,23 @@ in
       data-root = "/var/lib/docker";
     };
 
-    # We use appuser in VMs
-    # OLD: users.users."ghaf".extraGroups = ["docker" "dialout"];
-    ghaf.users.appUser.extraGroups = [
-      "docker"
-      "dialout"
-    ];
+    # We use appuser in app VMs to run applications.
+    # This is probably for configuration purposes though.
+    # TODO verify requirement
+    ghaf.users.admin.extraGroups = [ "dialout" ];
+
+    # Use givc service management
+    givc.appvm.enable = mkForce false;
+    givc.sysvm = {
+      enable = true;
+      inherit (config.microvm.vms.docker-vm.config.config.givc.appvm)
+        debug
+        admin
+        tls
+        transport
+        ;
+      services = [ "docker.service" ];
+    };
 
     # MTU
     systemd.network.links."10-ethint0".extraConfig = "MTUBytes=1372";
