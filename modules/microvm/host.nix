@@ -84,7 +84,7 @@ in
         ca-name = "NATS CA";
         ca-path = "/run/certs/nats/ca";
         server-ips = [
-          "${hosts.ghaf-host.ipv4}"
+          "${hosts.msg-vm.ipv4}"
           "127.0.0.1"
         ];
         server-name = "NATS-server";
@@ -95,11 +95,6 @@ in
           "/run/certs/nats/clients/dockervm"
         ];
       }; # services.fmo-certs-distribution-service-host
-
-      # TODO this needs integration and first boot or installer setup
-      # registration-agent-laptop = {
-      #   enable = true;
-      # }; # services.registration-agent-laptop
     };
 
     # Create MicroVM host share folders
@@ -107,6 +102,7 @@ in
       "d /persist/vms_shares/common 0700 ${toString config.ghaf.users.loginUser.uid} users -"
       "d /persist/vms_shares/dockervm 0700 ${toString config.ghaf.users.loginUser.uid} users -"
       "d /persist/vms_shares/netvm 0700 ${toString config.ghaf.users.loginUser.uid} users -"
+      "d /persist/vms_shares/msgvm 0700 ${toString config.ghaf.users.loginUser.uid} users -"
       "d /persist/fogdata 0700 ${toString config.ghaf.users.loginUser.uid} users -"
       # TODO is this actually meant to be temporary? if yes adjust rule
       "d /persist/tmp 0700 microvm kvm -"
@@ -114,6 +110,5 @@ in
 
     # Limit the memory of the chrome-vm
     microvm.vms.chrome-vm.config.config.microvm.mem = lib.mkForce 2047;
-
   };
 }

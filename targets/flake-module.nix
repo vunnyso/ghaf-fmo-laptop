@@ -30,6 +30,7 @@ in
               overlays = [
                 inputs.ghaf.overlays.default
                 inputs.self.overlays.custom-packages
+                inputs.self.overlays.own-pkgs-overlay
               ];
 
             };

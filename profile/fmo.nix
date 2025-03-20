@@ -68,16 +68,19 @@
 
       virtualization.microvm.appvm = {
         enable = true;
-        vms = {
-          chrome.enable = true;
-          zathura.enable = true;
-          docker.enable = true;
-        } // (import ../modules/microvm/docker/vm.nix { inherit pkgs lib config; });
+        vms =
+          {
+            chrome.enable = true;
+            zathura.enable = true;
+          }
+          // (import ../modules/microvm/docker/vm.nix { inherit pkgs lib config; })
+          // (import ../modules/microvm/msg/vm.nix { inherit pkgs lib config; });
       };
 
       # Content
       reference = {
         appvms.enable = true;
+        desktop.applications.enable = true;
 
         services = {
           enable = true;

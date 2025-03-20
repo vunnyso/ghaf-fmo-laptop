@@ -137,6 +137,12 @@ in
       ];
       requires = [ "network-online.target" ];
 
+      # Only run this service if provisioning is complete
+      unitConfig.ConditionPathExists = [
+        cfg.pat-path
+        cfg.compose-path
+      ];
+
       # TODO: restart always
       serviceConfig = {
         Restart = lib.mkForce "always";
