@@ -98,6 +98,7 @@
         ./overlays/flake-module.nix
         ./profile/flake-module.nix
         ./targets/flake-module.nix
+        ./packages/flake-module.nix
       ];
     };
 }

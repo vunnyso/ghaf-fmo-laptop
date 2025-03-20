@@ -8,12 +8,13 @@
   ...
 }:
 let
-  inherit (lib) optionals hasAttr mkForce;
+  inherit (lib) optionals hasAttr;
 in
 {
   imports = [
     ../../fmo/dci-service
     ../../fmo/fmo-dci-passthrough
+    ../../fmo/registration-agent-laptop
   ];
 
   config = {
@@ -26,7 +27,6 @@ in
     ];
 
     # Docker configuration
-    virtualisation.docker.enable = true;
     virtualisation.docker.daemon.settings = {
       data-root = "/var/lib/docker";
     };
@@ -37,17 +37,17 @@ in
     ghaf.users.admin.extraGroups = [ "dialout" ];
 
     # Use givc service management
-    givc.appvm.enable = mkForce false;
-    givc.sysvm = {
-      enable = true;
-      inherit (config.microvm.vms.docker-vm.config.config.givc.appvm)
-        debug
-        admin
-        tls
-        transport
-        ;
-      services = [ "docker.service" ];
-    };
+    # givc.appvm.enable = mkForce false;
+    # givc.sysvm = {
+    #   enable = true;
+    #   inherit (config.microvm.vms.docker-vm.config.config.givc.appvm)
+    #     debug
+    #     admin
+    #     tls
+    #     transport
+    #     ;
+    #   services = [ "docker.service" ];
+    # };
 
     # MTU
     systemd.network.links."10-ethint0".extraConfig = "MTUBytes=1372";
@@ -75,14 +75,14 @@ in
       shares = [
         {
           source = "/persist/vms_shares/common";
-          mountPoint = "/var/vms_share/common";
+          mountPoint = "/var/lib/vms_share/common";
           tag = "common_share_dockervm";
           proto = "virtiofs";
           socket = "common_share_dockervm.sock";
         }
         {
           source = "/persist/vms_shares/dockervm";
-          mountPoint = "/var/vms_share/host";
+          mountPoint = "/var/lib/vms_share/host";
           tag = "dockervm_share";
           proto = "virtiofs";
           socket = "dockervm_share.sock";
@@ -113,6 +113,25 @@ in
       # Extra args for gnss device
       qemu.extraArgs = optionals (hasAttr "gps0" config.ghaf.hardware.usb.internal.qemuExtraArgs) config.ghaf.hardware.usb.internal.qemuExtraArgs.gps0;
     }; # microvm
+
+    # Terminal and fonts
+    # TODO this doesn't work yet
+    programs.foot = {
+      enable = true;
+      settings.main.font = "DroidSansMono:size=12";
+    };
+    fonts.packages = [
+      pkgs.nerd-fonts.droid-sans-mono
+    ];
+
+    users.users.appuser = {
+      initialPassword = "appuser";
+      extraGroups = [
+        "wheel"
+        "docker"
+        "dialout"
+      ];
+    };
 
     # Services
     services = {
@@ -164,7 +183,8 @@ in
         backup-path = "/var/lib/fogdata/docker-compose.yml.backup";
         pat-path = "/var/lib/fogdata/PAT.pat";
         preloaded-images = "tii-offline-map-data-loader.tar.gz";
-        docker-url = "cr.airoplatform.com";
+        # docker-url = "cr.airoplatform.com";
+        docker-url = "ghcr.io";
         docker-url-path = "/var/lib/fogdata/cr.url";
         docker-mtu = 1372;
       }; # services.fmo-dci
@@ -172,19 +192,20 @@ in
       avahi = {
         enable = true;
         nssmdns4 = true;
+        # TODO enable dynamic support for this?
+        hostName = "m1";
       }; # services.avahi
 
-      # TODO enable registration
-      # registration-agent-laptop = {
-      #   enable = true;
-      #   run_on_boot = true;
-      #   certs_path = "/var/lib/fogdata/certs";
-      #   config_path = "/var/lib/fogdata";
-      #   token_path = "/var/lib/fogdata";
-      #   hostname_path = "/var/lib/fogdata";
-      #   ip_path = "/var/lib/fogdata";
-      #   post_install_path = "/var/lib/fogdata/certs";
-      # }; # services.registration-agent-laptop
+      # Setup service for registration agent
+      registration-agent-laptop = {
+        enable = true;
+        certs_path = "/var/lib/fogdata/certs";
+        config_path = "/var/lib/fogdata";
+        token_path = "/var/lib/fogdata";
+        hostname_path = "/var/lib/fogdata";
+        ip_path = "/var/lib/fogdata";
+        post_install_path = "/var/lib/fogdata/certs";
+      }; # services.registration-agent-laptop
     }; # services
 
     # FIXME why is this here?
