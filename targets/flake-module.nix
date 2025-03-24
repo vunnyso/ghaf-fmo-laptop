@@ -1,49 +1,95 @@
 # Copyright 2022-2025 TII (SSRC) and the Ghaf contributors
 # SPDX-License-Identifier: Apache-2.0
-{ inputs, ... }:
+{
+  lib,
+  self,
+  inputs,
+  ...
+}:
 let
   system = "x86_64-linux";
+  nixMods = inputs.self.nixosModules;
 
-  mkFmoLaptopConfiguration =
-    hardware-module: profile-module:
-    inputs.nixpkgs.lib.nixosSystem {
-      inherit system;
-      modules = [
-        hardware-module
-        profile-module
-        {
-          ghaf.profiles.debug.enable = true;
+  laptop-configuration = import ./mkLaptopConfiguration.nix { inherit inputs; };
+  installer-config = import ./mkInstaller.nix { inherit lib inputs; };
 
-          nixpkgs = {
-            hostPlatform = { inherit system; };
+  # create a configuration for each live image
+  target-configs = [
+    (laptop-configuration "fmo-alienware-m18-r2-debug" [
+      nixMods.hardware-alienware-m18-r2
+      nixMods.fmo-profile
+      {
+        ghaf.profiles.debug.enable = true;
+      }
+    ])
+    (laptop-configuration "fmo-dell-7230-debug" [
+      nixMods.hardware-dell-latitude-7230
+      nixMods.fmo-profile
+      {
+        ghaf.profiles.debug.enable = true;
+      }
+    ])
+    (laptop-configuration "fmo-dell-7330-debug" [
+      nixMods.hardware-dell-latitude-7330
+      nixMods.fmo-profile
+      {
+        ghaf.profiles.debug.enable = true;
+      }
+    ])
+    (laptop-configuration "fmo-lenovo-x1-gen11-debug" [
+      nixMods.hardware-lenovo-x1-carbon-gen11
+      nixMods.fmo-profile
+      {
+        ghaf.profiles.debug.enable = true;
+      }
+    ])
 
-            config = {
-              allowUnfree = true;
-              permittedInsecurePackages = [
-                "jitsi-meet-1.0.8043"
-              ];
-            };
+    #
+    # Release Builds
+    #
+    # TODO: enable in a later release
+    #
+    # (laptop-configuration "fmo-alienware-m18-r2-release" [
+    #   nixMods.hardware-alienware-m18-r2
+    #   nixMods.fmo-profile
+    #   {
+    #     ghaf.profiles.release.enable = true;
+    #   }
+    # ])
+    # (laptop-configuration "fmo-dell-7230-release" [
+    #   nixMods.hardware-dell-latitude-7230
+    #   nixMods.fmo-profile
+    #   {
+    #     ghaf.profiles.release.enable = true;
+    #   }
+    # ])
+    # (laptop-configuration "fmo-dell-7330-release" [
+    #   nixMods.hardware-dell-latitude-7330
+    #   nixMods.fmo-profile
+    #   {
+    #     ghaf.profiles.release.enable = true;
+    #   }
+    # ])
+    # (laptop-configuration "fmo-lenovo-x1-gen11-release" [
+    #   nixMods.hardware-lenovo-x1-carbon-gen11
+    #   nixMods.fmo-profile
+    #   {
+    #     ghaf.profiles.release.enable = true;
+    #   }
+    # ])
+  ];
 
-            overlays = [
-              inputs.ghaf.overlays.default
-              inputs.self.overlays.custom-packages
-              inputs.self.overlays.own-pkgs-overlay
-            ];
+  # create an installer for each target
+  target-installers = map (
+    t: installer-config t.name (self.packages.x86_64-linux.${t.name} + "/disk1.raw.zst") [ ]
+  ) target-configs;
 
-          };
-        }
-      ];
-    };
+  # the overall outputs. Both the live image and an installer for it.
+  targets = target-configs ++ target-installers;
 in
 {
   flake = {
-    nixosConfigurations = {
-      fmo-dell-7230 = mkFmoLaptopConfiguration inputs.self.nixosModules.hardware-dell-latitude-7230 inputs.self.nixosModules.fmo-profile;
-      fmo-alienware = mkFmoLaptopConfiguration inputs.self.nixosModules.hardware-alienware-m18-r2 inputs.self.nixosModules.fmo-profile;
-    };
-    packages.${system} = {
-      fmo-dell-7230 = inputs.self.nixosConfigurations.fmo-dell-7230.config.system.build.diskoImages;
-      fmo-alienware = inputs.self.nixosConfigurations.fmo-alienware.config.system.build.diskoImages;
-    };
+    nixosConfigurations = builtins.listToAttrs (map (t: lib.nameValuePair t.name t.hostConfig) targets);
+    packages.${system} = builtins.listToAttrs (map (t: lib.nameValuePair t.name t.package) targets);
   };
 }
