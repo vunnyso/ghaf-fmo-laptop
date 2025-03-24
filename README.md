@@ -27,6 +27,68 @@ This repository contains the source files (code and documentation) of Ghaf-fmo-l
 Ghaf-fmo-laptop images are built and tested by our continuous integration system. For more information on a general process, see [Continuous Integration and Distribution](https://tiiuae.github.io/ghaf/scs/ci-cd-system.html).
 
 
+### Quick start guide for first time install
+
+Example of building the `Lenovo X1`` target and flashing for first time:
+
+``` shell
+# set up the build environment
+nix develop
+
+# See the list of targets that can be built
+nix flake show
+
+# select a target to build
+nix build .#fmo-lenovo-x1-gen11-debug-installer
+
+# insert an ssd to copy the installer to and find the name e.g. /dev/sdb
+sudo dmesg
+
+# flash the installer to the ssd
+sudo dd if=./result/iso/ghaf.iso of=/dev/sdb bs=32M status=progress; sync
+
+# install into the target machine (ensure bios is configured to boot from ssd)
+# boot to the cmd prompt
+
+sudo ghaf_installer
+
+#select the target disk
+/dev/nvme0n1
+
+# accept that you are going to erase the disk
+y
+
+# after install reboot and remove the ssd
+sudo reboot
+
+#after boot choose username/ fullname / password (twice)
+username / username / password
+
+# once created login with the new credentials
+username / password
+
+```
+
+### Rebuilding and flashing a target (after first install)
+
+``` shell
+# setup the development environment
+nix develop
+
+# see the documentation on setting up the ssh config (especially the proxyJump)
+# only needs to be done once.
+cat .packages/fmo-build-helper/default.nix
+
+# use the helper tool to buid and flash your target
+fmo-rebuild 192.168.0.123 .#fmo-lenovo-x1-gen11-debug switch
+
+# alternatively you can use the nix tooling directly without the wrapper
+nixos-rebuild --flake .#fmo-lenovo-x1-gen11-debug --target-host "root@ghaf-host" --fast switch
+
+```
+
+
+
 ## Contributing
 
 We welcome your contributions to code and documentation.
