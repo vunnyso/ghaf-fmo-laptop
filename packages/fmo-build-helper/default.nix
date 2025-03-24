@@ -46,7 +46,7 @@ writeShellApplication {
         *           nixos-rebuild options as per https://nixos.wiki/wiki/Nixos-rebuild
                     or nixos-rebuild --help
 
-      Example:      fmo-rebuild 192.168.0.123 .#lenovo-x1-carbon-gen11-debug switch
+      Example:      fmo-rebuild 192.168.0.123 .#fmo-lenovo-x1-gen11-debug switch
 
     EOF
     }
