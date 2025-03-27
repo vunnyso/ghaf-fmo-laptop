@@ -48,6 +48,8 @@
 
             # FMO imports
             inputs.self.nixosModules.fmo-personalize
+
+            inputs.self.nixosModules.guivm
           ];
         };
         graphics.enable = true;

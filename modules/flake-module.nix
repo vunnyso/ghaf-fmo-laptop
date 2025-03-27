@@ -10,6 +10,7 @@
   flake.nixosModules = {
     host.imports = [ ./microvm/host.nix ];
     netvm.imports = [ ./microvm/netvm.nix ];
+    guivm.imports = [ ./microvm/guivm.nix ];
     dockervm.imports = [ ./microvm/docker/vm.nix ];
     msgvm.imports = [ ./microvm/msg/vm.nix ];
   };
