@@ -140,14 +140,34 @@ jobs:
           git log --oneline -n$(( COMMITS + CONTEXT ))
       - name: Install nix
         uses: cachix/install-nix-action@d1ca217b388ee87b2507a9a93bf01368bde7cec2 # v31
+      - name: Generate token
+        id: auth
+        uses: actions/create-github-app-token@d72941d797fd3113feb6b93fd0dec494b13a2547 # v1.12.0
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          owner: tiiuae
       - name: Prepare remote builds
         run: |
           sudo sh -c "echo '${{ vars.BUILDER_SSH_KNOWN_HOST }}' >>/etc/ssh/ssh_known_hosts"
       - name: Run all checks
         run: |
+          # Setup the github-token on remote builder: it will be used to access
+          # the go dependencies in private repositories
+          tmpdir="$(mktemp --tmpdir=/tmp --dry-run --directory --suffix .gha-check)"
+          echo '${{ steps.auth.outputs.token }}' |\
+            ssh "${{ vars.BUILDER_X86 }}" "mkdir -p $tmpdir; cat > $tmpdir/github-token"
+          on_exit () {
+            echo "Removing $tmpdir on ${{ vars.BUILDER_X86 }}"
+            ssh "${{ vars.BUILDER_X86 }}" "rm -fr $tmpdir"
+          }
+          trap on_exit EXIT
+
+          # Run the checks on remote builder
           nix run --inputs-from .# nixpkgs#nix-fast-build -- \
             --remote '${{ vars.BUILDER_X86 }}' \
             --flake '.#checks' \
             --always-upload-source \
             --option accept-flake-config true \
+            --option extra-sandbox-paths "/tmp/github-token=$tmpdir/github-token" \
             --no-download --skip-cached --no-nom
