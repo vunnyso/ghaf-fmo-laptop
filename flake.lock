@@ -705,11 +705,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1742991541,
-        "narHash": "sha256-nl5R7gu3nz/hiWyPAlcEl0bUciprAat7Ouje4saV18o=",
+        "lastModified": 1743179143,
+        "narHash": "sha256-u2xqoVYFZwNOjnyWK77hZArH6x62IyKHiLGqgVL2BBY=",
         "ref": "refs/heads/main",
-        "rev": "acc62c9e480cd32b451fb3365d19e78f55b1a0b9",
-        "revCount": 357,
+        "rev": "2e61595121a8a2a25623a86b9a6b05fd191d2c57",
+        "revCount": 365,
         "type": "git",
         "url": "ssh://git@github.com/tiiuae/onboarding-agent"
       },
