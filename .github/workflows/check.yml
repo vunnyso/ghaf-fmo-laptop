@@ -152,11 +152,11 @@ jobs:
           sudo sh -c "echo '${{ vars.BUILDER_SSH_KNOWN_HOST }}' >>/etc/ssh/ssh_known_hosts"
       - name: Run all checks
         run: |
-          # Setup the github-token on remote builder: it will be used to access
+          # Setup the .netrc file on remote builder: it will be used to access
           # the go dependencies in private repositories
           tmpdir="$(mktemp --tmpdir=/tmp --dry-run --directory --suffix .gha-check)"
-          echo '${{ steps.auth.outputs.token }}' |\
-            ssh "${{ vars.BUILDER_X86 }}" "mkdir -p $tmpdir; cat > $tmpdir/github-token"
+          echo 'machine github.com login x-access-token password ${{ steps.auth.outputs.token }}' |\
+            ssh "${{ vars.BUILDER_X86 }}" "mkdir -p $tmpdir; cat > $tmpdir/.netrc"
           on_exit () {
             echo "Removing $tmpdir on ${{ vars.BUILDER_X86 }}"
             ssh "${{ vars.BUILDER_X86 }}" "rm -fr $tmpdir"
@@ -169,5 +169,5 @@ jobs:
             --flake '.#checks' \
             --always-upload-source \
             --option accept-flake-config true \
-            --option extra-sandbox-paths "/tmp/github-token=$tmpdir/github-token" \
+            --option extra-sandbox-paths "/tmp/.netrc=$tmpdir/.netrc" \
             --no-download --skip-cached --no-nom
