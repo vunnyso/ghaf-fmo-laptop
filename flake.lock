@@ -321,11 +321,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1743467690,
-        "narHash": "sha256-c5d/wTeTV4QIqXZm/d6cWazVUzp9fnXEDZQvoawMuGg=",
+        "lastModified": 1743507095,
+        "narHash": "sha256-w5XILE12ICPk+VXCCNVJUm1ljyDlh00ljiOov6LWRpQ=",
         "owner": "tiiuae",
         "repo": "ghaf",
-        "rev": "06362517c216fdcc285fffe76bd3953922daf1d6",
+        "rev": "703450425a31781b0dc0bc2488874c5549b7e971",
         "type": "github"
       },
       "original": {
