@@ -39,18 +39,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    registration-agent = {
+    onboarding-agent = {
       url = "git+ssh://git@github.com/tiiuae/onboarding-agent";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "ghaf/flake-utils";
-      };
-    };
-
-    # Pin the version until we can merge the changes upstream
-    # TODO: we do not have access to manage the upstream repo
-    fmo-tool = {
-      url = "github:tiiuae/fmo-tool/119afdcf908dad61ae862c0efd8d148d8d8580ce";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-utils.follows = "ghaf/flake-utils";

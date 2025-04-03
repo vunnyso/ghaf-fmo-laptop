@@ -33,6 +33,7 @@
                 pkgs.nixVersions.latest
                 pkgs.reuse
                 pkgs.cachix
+                pkgs.coreutils
                 config.treefmt.build.wrapper
                 fmo-build-helper
               ]

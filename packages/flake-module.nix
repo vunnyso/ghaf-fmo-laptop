@@ -4,7 +4,7 @@
 {
   flake.overlays.own-pkgs-overlay = final: _prev: {
     fmo-build-helper = final.callPackage ./fmo-build-helper/default.nix { };
-    fmo-registration = final.callPackage ./fmo-registration/default.nix { };
-    registration-agent = inputs.registration-agent.packages.${final.stdenv.hostPlatform.system}.default;
+    fmo-onboarding = final.callPackage ./fmo-onboarding/default.nix { };
+    onboarding-agent = inputs.onboarding-agent.packages.${final.stdenv.hostPlatform.system}.default;
   };
 }

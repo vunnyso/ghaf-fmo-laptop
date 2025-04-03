@@ -286,31 +286,6 @@
         "type": "github"
       }
     },
-    "fmo-tool": {
-      "inputs": {
-        "flake-utils": [
-          "ghaf",
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1741925805,
-        "narHash": "sha256-OkKoqkF86pGc2nEvdg13yCaki+vfX0s8dZBhQoNRPOo=",
-        "owner": "tiiuae",
-        "repo": "fmo-tool",
-        "rev": "119afdcf908dad61ae862c0efd8d148d8d8580ce",
-        "type": "github"
-      },
-      "original": {
-        "owner": "tiiuae",
-        "repo": "fmo-tool",
-        "rev": "119afdcf908dad61ae862c0efd8d148d8d8580ce",
-        "type": "github"
-      }
-    },
     "ghaf": {
       "inputs": {
         "ci-test-automation": "ci-test-automation",
@@ -338,11 +313,11 @@
         "wireguard-gui": "wireguard-gui"
       },
       "locked": {
-        "lastModified": 1743580630,
-        "narHash": "sha256-UxIzpt/JwX/VmccgubI5RspAty5ITvee+POCEJFgciI=",
+        "lastModified": 1743623243,
+        "narHash": "sha256-FmnVZZK89g3CAE8JdfNpxJ3v0Mqx1OL5Yd5yMYuFr0M=",
         "owner": "tiiuae",
         "repo": "ghaf",
-        "rev": "33b6f1f85410d354b0721a1b0197c49837cd6b6e",
+        "rev": "b7cd260220085c1fd8f1c5f3f0c8c67092f18cdb",
         "type": "github"
       },
       "original": {
@@ -679,6 +654,30 @@
         "type": "github"
       }
     },
+    "onboarding-agent": {
+      "inputs": {
+        "flake-utils": [
+          "ghaf",
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1743672769,
+        "narHash": "sha256-xj6RyydarDZSlNSpuBiuBS9lNI3pw69TB3Toc/KLm1U=",
+        "ref": "refs/heads/main",
+        "rev": "0b38cf57dded4e603d21a0870fb78c7ed356a7d9",
+        "revCount": 372,
+        "type": "git",
+        "url": "ssh://git@github.com/tiiuae/onboarding-agent"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/tiiuae/onboarding-agent"
+      }
+    },
     "pkgs-by-name-for-flake-parts": {
       "locked": {
         "lastModified": 1741279982,
@@ -694,40 +693,15 @@
         "type": "github"
       }
     },
-    "registration-agent": {
-      "inputs": {
-        "flake-utils": [
-          "ghaf",
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1743591108,
-        "narHash": "sha256-G7Ify3KygNg4rQka1ozXutupKFsBG6nZTZvdBIN7m0Y=",
-        "ref": "refs/heads/main",
-        "rev": "5d145905d0840e1dedc7f9421877566cd66a0376",
-        "revCount": 366,
-        "type": "git",
-        "url": "ssh://git@github.com/tiiuae/onboarding-agent"
-      },
-      "original": {
-        "type": "git",
-        "url": "ssh://git@github.com/tiiuae/onboarding-agent"
-      }
-    },
     "root": {
       "inputs": {
         "devshell": "devshell",
         "flake-parts": "flake-parts",
         "flake-root": "flake-root",
-        "fmo-tool": "fmo-tool",
         "ghaf": "ghaf",
         "git-hooks-nix": "git-hooks-nix_2",
         "nixpkgs": "nixpkgs",
-        "registration-agent": "registration-agent",
+        "onboarding-agent": "onboarding-agent",
         "treefmt-nix": "treefmt-nix_2"
       }
     },

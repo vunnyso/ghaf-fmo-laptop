@@ -18,7 +18,7 @@ let
 in
 {
   options.services.onboarding-agent = {
-    enable = mkEnableOption "Install and setup registration-agent on system";
+    enable = mkEnableOption "Install and setup onboarding-agent on system";
 
     certs_path = mkOption {
       description = "Path to certificate files, used for environment variables";
@@ -59,13 +59,13 @@ in
     env_path = mkOption {
       description = "Path to create .env file";
       type = types.path;
-      default = "${config.users.users.appuser.home}";
+      default = "/var/lib/fogdata";
     };
 
     log_file_path = mkOption {
       description = "Path to log file";
       type = types.path;
-      default = "${cfg.certs_path}/registration-agent.log";
+      default = "/var/lib/fogdata/onboarding-agent.log";
     };
   };
 
@@ -73,7 +73,7 @@ in
 
     systemd.services.setup-onboarding-agent =
       let
-        registrationSetup = pkgs.writeShellApplication {
+        onboardingSetup = pkgs.writeShellApplication {
           name = "setup-onboarding-agent";
           runtimeInputs = [
             pkgs.coreutils
@@ -87,73 +87,53 @@ in
             [ ! -d ${cfg.ip_path} ] && mkdir -p ${cfg.ip_path}
             [ ! -d ${cfg.env_path} ] && mkdir -p ${cfg.env_path}
 
-            # Write .env file
-            cat > ${cfg.env_path}/.env << EOF
-            # Agent configuration
-            TLS=true
-            MDNS=true
-
-            # Device configuration
-            DEVICE_TYPE=laptop
-            DEVICE_ALIAS=
-
-            # Device identity
-            IDENTITY_FILE=${cfg.certs_path}/device_id.json
-            IDENTITY_SERIAL_NUMBER_FILE=${cfg.certs_path}/serial_number.txt
-
-            # Connection endpoints
-            PROVISIONING_URL=
-            NATS_ENDPOINT_FILE=${cfg.certs_path}/service_nats_url.txt
-
-            # Laptop specific configuration
-            DEVICE_HOSTNAME_FILE=${cfg.hostname_path}/hostname
-            DEVICE_IP_ADDRESS_FILE=${cfg.ip_path}/ip-address
-
-            # FMO stack configuration
-            DEVICE_NATS_LEAF_CONFIGURATION_FILE=${cfg.certs_path}/leaf.conf
-            DEVICE_CONFIGURATION_FILE=${cfg.config_path}/docker-compose.yml
-            DEVICE_CONFIGURATION_TEMPLATE_FILE=${cfg.config_path}/docker-compose.mustache
-
-            # Identity certificates (Backbone certificates)
-            IDENTITY_CERTIFICATE_REQUEST_FILE=${cfg.certs_path}/identity.csr
-            IDENTITY_KEY_FILE=${cfg.certs_path}/identity.key
-            IDENTITY_CERT_FILE=${cfg.certs_path}/identity.crt
-            IDENTITY_CA_CERT_FILE=${cfg.certs_path}/identity_ca.crt
-
-            # Fleet management NATS leaf node certificates
-            IDENTITY_FLEET_CLUSTER_CERTIFICATE_REQUEST_FILE=${cfg.certs_path}/fleet.csr
-            IDENTITY_FLEET_LEAF_CERTIFICATE_FILE=${cfg.certs_path}/fleet.crt
-            IDENTITY_FLEET_LEAF_CA_FILE=${cfg.certs_path}/fleet_ca.crt
-
-            # Swarm intermediate CA certificates
-            IDENTITY_SWARM_CA_CERTIFICATE_REQUEST_FILE=${cfg.certs_path}/swarm.csr
-            IDENTITY_SWARM_KEY_FILE=${cfg.certs_path}/swarm.key
-            IDENTITY_SWARM_CA_FILE=${cfg.certs_path}/swarm.crt
-            IDENTITY_SWARM_ROOT_CA_FILE=${cfg.certs_path}/swarm_root_ca.crt
-
-            # Secrets
-            SECRETS_AUTH_TOKEN_FILE=${cfg.token_path}/PAT.pat
-            SECRETS_UTM_SECRET_FILE=${cfg.certs_path}/utm-client-secret
+            # Write config.yaml file
+            cat > ${cfg.env_path}/config.yaml << EOF
+            TLS: true
+            MDNS: true
+            NatsEndpointFile: "${cfg.certs_path}/service_nats_url.txt"
+            Device:
+              Type: "laptop"
+              Alias: ""
+              Architecture: "linux/amd64"
+              Topology: "recon"
+              IpAddressFile: "${cfg.ip_path}/ip-address"
+              HostnameFile: "${cfg.hostname_path}/hostname"
+              ConfigurationFile: "${cfg.config_path}/docker-compose.yml"
+              ConfigurationTemplateFile: "${cfg.config_path}/docker-compose.mustache"
+              NatsLeafConfigurationFile: "${cfg.certs_path}/leaf.conf"
+            Identity:
+              CaCertFile: "${cfg.certs_path}/identity_ca.crt"
+              CertFile: "${cfg.certs_path}/identity.crt"
+              KeyFile: "${cfg.certs_path}/identity.key"
+              SerialNumberFile: "${cfg.certs_path}/serial_number.txt"
+              CertificateRequestFile: "${cfg.certs_path}/identity.csr"
+              File: "${cfg.certs_path}/device_id.json"
+              FleetClusterCertificateRequestFile: "${cfg.certs_path}/fleet.csr"
+              FleetLeafCertificateFile: "${cfg.certs_path}/fleet.crt"
+              FleetLeafCaFile: "${cfg.certs_path}/fleet_ca.crt"
+              SwarmCaCertificateRequestFile: "${cfg.certs_path}/swarm.csr"
+              SwarmCaFile: "${cfg.certs_path}/swarm.crt"
+              SwarmKeyFile: "${cfg.certs_path}/swarm.key"
+              SwarmRootCaFile: "${cfg.certs_path}/swarm_root_ca.crt"
+            Secrets:
+              AuthTokenFile: "${cfg.token_path}/PAT.pat"
+              UtmSecretFile: "${cfg.certs_path}/utm-client-secret.txt"
             EOF
-
-            # Set permissions
-            chown ${config.users.users.appuser.name}:${config.users.users.appuser.group} ${cfg.env_path}/.env
-            # TODO is this necessary?
-            chmod 666 ${cfg.env_path}/.env
           '';
         };
       in
       {
-        description = "Setup registration agent";
+        description = "Setup onboarding agent";
         wantedBy = [ "multi-user.target" ];
         before = [ "multi-user.target" ];
         unitConfig.ConditionPathExists = [
           "/var/lib/fogdata"
-          "!${cfg.env_path}/.env"
+          "!${cfg.env_path}/config.yaml"
         ];
         serviceConfig = {
           Type = "oneshot";
-          ExecStart = "${registrationSetup}/bin/setup-onboarding-agent --log-file ${cfg.log_file_path}";
+          ExecStart = "${onboardingSetup}/bin/setup-onboarding-agent";
           RemainAfterExit = true;
         };
       };
