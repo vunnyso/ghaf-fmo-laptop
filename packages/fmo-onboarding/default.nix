@@ -2,17 +2,17 @@
 # SPDX-License-Identifier: Apache-2.0
 {
   writeShellApplication,
-  registration-agent,
+  onboarding-agent,
   ipcalc,
   gawk,
   grpcurl,
 }:
 writeShellApplication {
-  name = "fmo-registration";
+  name = "fmo-onboarding";
 
   runtimeInputs = [
     gawk
-    registration-agent
+    onboarding-agent
     ipcalc
     grpcurl
   ];
@@ -21,11 +21,11 @@ writeShellApplication {
     # FIXME Read hostname and IP from user. This is a temporary solution and
     # should be replaced with a proper setup.
     #
-    # Host and IP file paths are hardcoded in registration agent. We share these
+    # Host and IP file paths are hardcoded in onboarding agent. We share these
     # with internal storage until better solution is implemented.
     ''
       set +euo pipefail
-      echo -e "\e[1;32;1mFMO Registration \e[0m"
+      echo -e "\e[1;32;1mFMO Onboarding \e[0m"
 
       IP_FILE=/var/common/ip-address
       HOSTNAME_FILE=/var/common/hostname
@@ -101,12 +101,12 @@ writeShellApplication {
       fi
 
       echo ""
-      read -r -p 'Do you want to start the registration agent? [y/N] ' response
+      read -r -p 'Do you want to start the onboarding agent? [y/N] ' response
       case "$response" in
       [yY][eE][sS] | [yY])
         cat $IP_FILE > /var/lib/fogdata/ip-address
         cat $HOSTNAME_FILE > /var/lib/fogdata/hostname
-        /run/current-system/sw/bin/registration-agent-laptop
+        /run/current-system/sw/bin/onboarding-agent  --config /var/lib/fogdata/config.yaml --log-file /var/lib/fogdata/onboarding-agent.log
       ;;
       *)
       ;;
@@ -115,11 +115,11 @@ writeShellApplication {
       echo "Exiting..."
 
       # Wait to allow user to read output
-      sleep 2
+      sleep 10
     '';
 
   meta = {
-    description = "Wrapper script for registration agent.";
+    description = "Wrapper script for onboarding agent.";
     platforms = [
       "x86_64-linux"
       "aarch64-linux"

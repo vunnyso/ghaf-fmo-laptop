@@ -14,15 +14,15 @@
     applications = [
       # TODO this is largely untested
       {
-        name = "FMO Registration Agent";
-        description = "FMO Registration Agent";
+        name = "FMO Onboarding Agent";
+        description = "FMO Onboarding Agent";
         packages = [
-          pkgs.registration-agent
-          pkgs.fmo-registration
+          pkgs.onboarding-agent
+          pkgs.fmo-onboarding
           pkgs.papirus-icon-theme
         ];
         icon = "${pkgs.papirus-icon-theme}/share/icons/Papirus/64x64/apps/rocs.svg";
-        command = "foot /run/wrappers/bin/sudo ${pkgs.fmo-registration}/bin/fmo-registration";
+        command = "foot /run/wrappers/bin/sudo ${pkgs.fmo-onboarding}/bin/fmo-onboarding";
       }
     ];
     extraModules = [

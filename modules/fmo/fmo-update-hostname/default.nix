@@ -63,7 +63,7 @@ in
         };
 
       # Registation agent reads os.Hostname(), so we update the kernel hostname.
-      # This is also done during boots following the registration.
+      # This is also done during boots following the onboarding.
       # TODO Remove this filth
       paths.fmo-update-kernel-hostname = {
         description = "Monitor hostname file for changes";

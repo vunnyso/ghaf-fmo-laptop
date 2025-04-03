@@ -31,7 +31,7 @@ in
   imports = [
     ../../fmo/dci-service
     ../../fmo/fmo-dci-passthrough
-    ../../fmo/registration-agent-laptop
+    ../../fmo/onboarding-agent
     ../../fmo/fmo-update-hostname
     ../../fmo/fmo-docker-networking
   ];
@@ -113,12 +113,12 @@ in
       settings.main.font = "FiraCode Nerd Font Mono:size=10";
     };
 
-    # User is used for registration agent
+    # User is used for onboarding agent
     users.users.appuser.extraGroups = [
       "dialout"
     ];
     security.sudo.extraConfig = ''
-      appuser ALL=(root) NOPASSWD: ${pkgs.fmo-registration}/bin/fmo-registration
+      appuser ALL=(root) NOPASSWD: ${pkgs.fmo-onboarding}/bin/fmo-onboarding
     '';
 
     # Services
@@ -168,8 +168,8 @@ in
         hostnamePath = "/var/common/hostname";
       };
 
-      # Setup service for registration agent
-      registration-agent-laptop = {
+      # Setup service for onboarding agent
+      onboarding-agent = {
         enable = true;
         certs_path = "/var/lib/fogdata/certs";
         config_path = "/var/lib/fogdata";
