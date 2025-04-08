@@ -31,10 +31,11 @@
     #TODO: this needs to be pinned to the version that ghaf is currently pinned to.
     # rather painful. though it can be pinned to official releases this way.
     nixpkgs = {
-      url = "github:NixOS/nixpkgs?rev=5e5402ecbcb27af32284d4a62553c019a3a49ea6";
+      url = "github:NixOS/nixpkgs?rev=063dece00c5a77e4a0ea24e5e5a5bd75232806f8";
     };
 
     ghaf = {
+      #url = "flake:mylocalghaf";
       url = "github:tiiuae/ghaf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
