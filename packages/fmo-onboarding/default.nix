@@ -30,6 +30,8 @@ writeShellApplication {
       IP_FILE=/var/common/ip-address
       HOSTNAME_FILE=/var/common/hostname
 
+      CONFIG_FILE=/var/lib/fogdata/config.yaml
+
       set_hostname(){
         # Read hostname from user
         read -e -r -p "Enter mDNS hostname: " HOSTNAME
@@ -53,6 +55,14 @@ writeShellApplication {
             echo "Invalid IP address: $IP"
           fi
         done
+      }
+
+      set_alias() {
+        # Read alias from user
+        read -r -p "Enter the alias for the device: " alias
+
+        # Update the alias in the config file
+        sed -i -e "s/Alias: .*/Alias: \"$alias\"/" "$CONFIG_FILE"
       }
 
       # Set mDNS hostname
@@ -95,13 +105,25 @@ writeShellApplication {
         set_ip
       fi
 
+      # Set device alias
+      echo ""
+      read -r -p "Do you want to set an alias for this device [y/N]? " response
+      case "$response" in
+      [yY][eE][sS] | [yY])
+        set_alias
+        ;;
+      *)
+        echo "No alias set."
+        ;;
+      esac
+
       echo ""
       read -r -p 'Do you want to start the onboarding agent? [y/N] ' response
       case "$response" in
       [yY][eE][sS] | [yY])
         cat $IP_FILE > /var/lib/fogdata/ip-address
         cat $HOSTNAME_FILE > /var/lib/fogdata/hostname
-        /run/current-system/sw/bin/onboarding-agent  --config /var/lib/fogdata/config.yaml --log-file /var/lib/fogdata/onboarding-agent.log --encrypt-secrets
+        /run/current-system/sw/bin/onboarding-agent  --config $CONFIG_FILE --log-file /var/lib/fogdata/onboarding-agent.log --encrypt-secrets
       ;;
       *)
       ;;
