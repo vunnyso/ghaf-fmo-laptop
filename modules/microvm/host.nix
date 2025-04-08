@@ -71,7 +71,7 @@ in
         name = "Firefox GPU";
         description = "Firefox Beta with GPU acceleration";
         icon = "firefox";
-        command = "/run/current-system/sw/bin/firefox-beta";
+        command = "/run/current-system/sw/bin/firefox";
       }
     ];
   };

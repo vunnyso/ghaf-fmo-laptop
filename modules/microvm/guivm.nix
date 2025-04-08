@@ -35,7 +35,6 @@ let
     ];
   };
 
-  firefox-beta = rmDesktopEntry pkgs.firefox-beta;
   nvidia.enable = any (d: d.vendorId == "10de") config.ghaf.hardware.definition.gpu.pciDevices;
 in
 {
@@ -51,7 +50,7 @@ in
 
     programs.firefox = {
       enable = true;
-      package = firefox-beta;
+      package = rmDesktopEntry pkgs.firefox;
     };
 
     ghaf.ghaf-audio = {
