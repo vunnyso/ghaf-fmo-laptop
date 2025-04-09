@@ -313,11 +313,11 @@
         "wireguard-gui": "wireguard-gui"
       },
       "locked": {
-        "lastModified": 1744193726,
-        "narHash": "sha256-8fPBYqfQcK76ybd3Lmb4LFG/65jNj9wxMlEBMYdH6og=",
+        "lastModified": 1744217180,
+        "narHash": "sha256-DdAI7DgTGCx3cwcWpzQEPWQnHYcKVlgYxTathPL7+rk=",
         "owner": "tiiuae",
         "repo": "ghaf",
-        "rev": "e7f1ed77b1fd58e4f1e3bd0fd639dc50c4799406",
+        "rev": "1eacbe1fa17fbcf5bfc8c0ce8fcd3c0830795f6d",
         "type": "github"
       },
       "original": {
