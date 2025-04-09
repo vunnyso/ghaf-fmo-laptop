@@ -6,7 +6,7 @@
 }:
 let
   inherit (config.ghaf.networking) hosts;
-  externalNics = map (d: d.name) config.ghaf.hardware.definition.network.pciDevices;
+  externalNics = map (d: d.name) config.ghaf.common.hardware.nics;
 in
 {
   imports = [
@@ -31,6 +31,7 @@ in
       fmo-firewall = {
         enable = true;
         inherit externalNics;
+        mtu = 1372;
         configuration = [
           {
             dip = hosts.docker-vm.ipv4;
