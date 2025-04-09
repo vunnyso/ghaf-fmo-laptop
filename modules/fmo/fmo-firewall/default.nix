@@ -12,8 +12,10 @@ let
     mkIf
     mkEnableOption
     mkOption
-    concatMapStringsSep
     types
+    optionalAttrs
+    concatStringsSep
+    concatMapStringsSep
     ;
 
   mkFirewallRules =
@@ -37,7 +39,15 @@ in
     externalNics = mkOption {
       type = types.listOf types.str;
       description = ''
-        List of external network interfaces that
+        List of external network interfaces with port forwarding rules.
+      '';
+    };
+
+    mtu = mkOption {
+      type = types.nullOr types.int;
+      default = null;
+      description = ''
+        MTU for the external network interfaces.
       '';
     };
 
@@ -74,6 +84,25 @@ in
           ) cfg.externalNics)
         ) cfg.configuration}
       '';
+    };
+
+    # Set MTU
+    environment.etc."NetworkManager/dispatcher.d/99-mtu" = optionalAttrs (cfg.mtu != null) {
+      text = ''
+        #!/bin/sh
+        IFACE="$1"
+        STATUS="$2"
+        case "$STATUS" in
+          up)
+            for iface in ${concatStringsSep " " cfg.externalNics}; do
+              if [[ "$IFACE" == "$iface" ]]; then
+                ip link set dev "$IFACE" mtu ${toString cfg.mtu}
+              fi
+            done
+          ;;
+        esac
+      '';
+      mode = "0700";
     };
 
   };

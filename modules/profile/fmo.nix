@@ -10,14 +10,12 @@
 {
   imports = [
     # Ghaf imports
-    inputs.ghaf.nixosModules.microvm
     inputs.ghaf.nixosModules.disko-debug-partition
-    inputs.ghaf.nixosModules.profiles
-    inputs.ghaf.nixosModules.profiles-laptop
+    inputs.ghaf.nixosModules.profiles-workstation
     inputs.ghaf.nixosModules.reference-appvms
-    inputs.ghaf.nixosModules.reference-profiles
     inputs.ghaf.nixosModules.reference-programs
     inputs.ghaf.nixosModules.reference-services
+    inputs.ghaf.nixosModules.reference-desktop
 
     # FMO imports
     inputs.self.nixosModules.host

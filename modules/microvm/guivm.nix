@@ -35,7 +35,7 @@ let
     ];
   };
 
-  nvidia.enable = any (d: d.vendorId == "10de") config.ghaf.hardware.definition.gpu.pciDevices;
+  nvidia.enable = any (d: d.vendorId == "10de") config.ghaf.common.hardware.gpus;
 in
 {
   config = {
