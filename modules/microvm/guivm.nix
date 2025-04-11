@@ -35,13 +35,16 @@ let
     ];
   };
 
-  nvidia.enable = any (d: d.vendorId == "10de") config.ghaf.common.hardware.gpus;
 in
 {
   config = {
     ghaf.graphics.nvidia-setup = {
-      inherit (nvidia) enable;
-      vaapi.firefox.av1Support = true;
+      enable = any (d: d.vendorId == "10de") config.ghaf.common.hardware.gpus;
+    };
+
+    #Primary drivers for the integrated GPU should not be enabledd for prime case
+    ghaf.graphics.intel-setup = {
+      enable = !config.ghaf.graphics.nvidia-setup.enable;
     };
 
     environment.systemPackages = [
