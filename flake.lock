@@ -313,11 +313,11 @@
         "wireguard-gui": "wireguard-gui"
       },
       "locked": {
-        "lastModified": 1744217180,
-        "narHash": "sha256-DdAI7DgTGCx3cwcWpzQEPWQnHYcKVlgYxTathPL7+rk=",
+        "lastModified": 1744357162,
+        "narHash": "sha256-mrtvzFPHrdnAfg12ubbBqBnBR4siZlV81moKM6+Qwhk=",
         "owner": "tiiuae",
         "repo": "ghaf",
-        "rev": "1eacbe1fa17fbcf5bfc8c0ce8fcd3c0830795f6d",
+        "rev": "d835d328db3123a4a880572f31402e99dd64161d",
         "type": "github"
       },
       "original": {
@@ -665,11 +665,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1744194270,
-        "narHash": "sha256-J0T1hk1sJfhFX7QNZdrbAHIMTs2fWLgJrLPdlCOHKsM=",
+        "lastModified": 1744354403,
+        "narHash": "sha256-UbyGFVbeGktPQ18RDinqW8ewCz11Tg9rikW8zOD51ok=",
         "ref": "refs/heads/main",
-        "rev": "235a716d563ac24ab329606c6716280eddb9fda9",
-        "revCount": 377,
+        "rev": "7654b495ca6def3af11f50e1b174dddbd5960b76",
+        "revCount": 378,
         "type": "git",
         "url": "ssh://git@github.com/tiiuae/onboarding-agent"
       },
