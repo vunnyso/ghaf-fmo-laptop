@@ -29,9 +29,10 @@ let
       # Hardware video encoding on Chrome on Linux.
       # See chrome://gpu to verify.
       # Enable H.265 video codec support.
-      "--enable-features=UseOzonePlatform,VaapiVideoDecoder,VaapiVideoEncoder,WebRtcAllowH265Receive,VaapiIgnoreDriverChecks"
+      "--enable-features=AcceleratedVideoDecodeLinuxGL,UseOzonePlatform,VaapiVideoDecoder,VaapiVideoEncoder,WebRtcAllowH265Receive,VaapiIgnoreDriverChecks"
       "--ozone-platform=wayland"
       "--force-fieldtrials=WebRTC-Video-H26xPacketBuffer/Enabled"
+      "--enable-zero-copy"
     ];
   };
 
