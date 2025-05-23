@@ -25,6 +25,11 @@ let
       n: v: if (strings.hasPrefix "gnss" n) then v else [ ]
     ) config.ghaf.hardware.usb.external.qemuExtraArgs
   );
+  xboxExtraArgs = flatten (
+    mapAttrsToList (
+      n: v: if (strings.hasPrefix "xbox" n) then v else [ ]
+    ) config.ghaf.hardware.usb.external.qemuExtraArgs
+  );
 
   appuser = config.ghaf.users.appUser.name;
 in
@@ -104,8 +109,8 @@ in
         }
       ]; # microvm.shares
 
-      # Extra args for yubikey
-      qemu.extraArgs = yubikeysExtraArgs ++ gnssExtraArgs;
+      # Extra args for Qemu
+      qemu.extraArgs = yubikeysExtraArgs ++ gnssExtraArgs ++ xboxExtraArgs;
     }; # microvm
 
     # Terminal and fonts

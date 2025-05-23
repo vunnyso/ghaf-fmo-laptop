@@ -1,20 +1,13 @@
 # Copyright 2022-2025 TII (SSRC) and the Ghaf contributors
 # SPDX-License-Identifier: Apache-2.0
 {
-  lib,
-  ...
-}:
-let
-  inherit (lib) mkForce;
-in
-{
   config = {
-
     # USB passthrough options
     # TODO External USB devices should get picked up automatically
-    # by vhotplug. These network adapters are untested, and this
-    # yubikey is misidentified.
-    ghaf.hardware.definition.usb.external = mkForce [
+    # by vhotplug. These network adapters are untested.
+    # External USB devices such as gps, yubikey and xbox
+    # are also inherited from ghaf
+    ghaf.hardware.definition.usb.external = [
       {
         # PLX Technology, Inc. RNDIS/Ethernet Gadget
         # PLX Technology, Inc. Linux-USB Ethernet/RNDIS Gadget
@@ -28,14 +21,6 @@ in
         name = "externalmesh0";
         vendorId = "0bda";
         productId = "8153";
-      }
-      # You may add any other yubikey device here. Alternatively, you can also
-      # specify passthrough via vhotplug, however, devices are sometimes mis-
-      # identified (such as this yubikey).
-      {
-        name = "yubikey0";
-        vendorId = "1050";
-        productId = "0407";
       }
     ];
   };
