@@ -14,13 +14,8 @@
       ./definition/dell-latitude-7230.nix
       ./definition/external-usb.nix
     ];
-    hardware-dell-latitude-7330-71.imports = [
-      inputs.ghaf.nixosModules.hardware-dell-latitude-7330-71
-      ./resources/dell-latitude-7330.nix
-      ./definition/external-usb.nix
-    ];
-    hardware-dell-latitude-7330-72.imports = [
-      inputs.ghaf.nixosModules.hardware-dell-latitude-7330-72
+    hardware-dell-latitude-7330.imports = [
+      inputs.ghaf.nixosModules.hardware-dell-latitude-7330
       ./resources/dell-latitude-7330.nix
       ./definition/external-usb.nix
     ];
