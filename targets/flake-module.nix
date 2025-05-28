@@ -47,18 +47,8 @@ let
         fmo.personalize.debug.enable = true;
       }
     ])
-    # based on the wifi PCI address 71:00.0
-    (laptop-configuration "fmo-dell-7330-71-debug" [
-      nixMods.hardware-dell-latitude-7330-71
-      nixMods.fmo-profile
-      {
-        ghaf.profiles.debug.enable = true;
-        fmo.personalize.debug.enable = true;
-      }
-    ])
-    # based on the wifi PCI address 72:00.0
-    (laptop-configuration "fmo-dell-7330-72-debug" [
-      nixMods.hardware-dell-latitude-7330-72
+    (laptop-configuration "fmo-dell-7330-debug" [
+      nixMods.hardware-dell-latitude-7330
       nixMods.fmo-profile
       {
         ghaf.profiles.debug.enable = true;
