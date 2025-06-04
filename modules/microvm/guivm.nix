@@ -64,11 +64,5 @@ in
       enable = true;
       package = rmDesktopEntry pkgs.firefox;
     };
-
-    ghaf.ghaf-audio = {
-      enable = true;
-      useTunneling = false;
-      inherit (config.system) name;
-    };
   };
 }
