@@ -28,11 +28,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1748255910,
-        "narHash": "sha256-/IpaSdssV+yegq0OG63GRvKkHg9K68RAlRbGRptUlXw=",
+        "lastModified": 1748600446,
+        "narHash": "sha256-U4GoAeDv7Tf0r3otJ1RfFDTeKcNczSHqw+lGdxdbkJA=",
         "owner": "tiiuae",
         "repo": "ci-test-automation",
-        "rev": "54b7aac254b2b1232b0718820c8da9d02969b128",
+        "rev": "59f06d908742776d12dddf4b5d28a1cf2e15dce9",
         "type": "github"
       },
       "original": {
@@ -185,11 +185,11 @@
         "nixpkgs-lib": "nixpkgs-lib"
       },
       "locked": {
-        "lastModified": 1743550720,
-        "narHash": "sha256-hIshGgKZCgWh6AYJpJmRgFdR3WUbkY04o82X05xqQiY=",
+        "lastModified": 1749398372,
+        "narHash": "sha256-tYBdgS56eXYaWVW3fsnPQ/nFlgWi/Z2Ymhyu21zVM98=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "c621e8422220273271f52058f618c94e405bb0f5",
+        "rev": "9305fe4e5c2a6fcf5ba6a3ff155720fbe4076569",
         "type": "github"
       },
       "original": {
@@ -312,11 +312,11 @@
         "wireguard-gui": "wireguard-gui"
       },
       "locked": {
-        "lastModified": 1748416517,
-        "narHash": "sha256-6iwJe5OYVhgY9Va7uWy/coxtuBmgOiwfX80reua5eec=",
+        "lastModified": 1749541877,
+        "narHash": "sha256-Wbr+ipYyN83/aN1TKhJFLBlTCY7pVMjajVTxwt2bQ74=",
         "owner": "tiiuae",
         "repo": "ghaf",
-        "rev": "cdfeb54072fb59c34685c5ce01c005216710c594",
+        "rev": "7e58bb31dc8cc23b4317a889d685bbd24378f593",
         "type": "github"
       },
       "original": {
@@ -492,11 +492,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1748245194,
-        "narHash": "sha256-g0yKzipksvYemE7zcf4LgjK+nbH05RrhVN6jf0P1ets=",
+        "lastModified": 1748516874,
+        "narHash": "sha256-TX2K8wDipK6dytdgnuLOkBvsnL7QhZgyyidlSJdpQno=",
         "owner": "tiiuae",
         "repo": "ghaf-givc",
-        "rev": "18243affdb037ff8fc1eaccbaad2a8b069c89973",
+        "rev": "38bf4d256d6d045da6df204e9c0f79462f7fd7c2",
         "type": "github"
       },
       "original": {
@@ -556,11 +556,11 @@
         "spectrum": "spectrum"
       },
       "locked": {
-        "lastModified": 1748260747,
-        "narHash": "sha256-V3ONd70wm55JxcUa1rE0JU3zD+Cz7KK/iSVhRD7lq68=",
+        "lastModified": 1748464257,
+        "narHash": "sha256-PdnQSE2vPfql9WEjunj2qQnDpuuvk7HH+4djgXJSwFs=",
         "owner": "astro",
         "repo": "microvm.nix",
-        "rev": "b6c5dfc2a1c7614c94fd2c5d2e8578fd52396f3b",
+        "rev": "e238645b6f0447a2eb1d538d300d5049d4006f9f",
         "type": "github"
       },
       "original": {
@@ -608,11 +608,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1747900541,
-        "narHash": "sha256-dn64Pg9xLETjblwZs9Euu/SsjW80pd6lr5qSiyLY1pg=",
+        "lastModified": 1748634340,
+        "narHash": "sha256-pZH4bqbOd8S+si6UcfjHovWDiWKiIGRNRMpmRWaDIms=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "11f2d9ea49c3e964315215d6baa73a8d42672f06",
+        "rev": "daa628a725ab4948e0e2b795e8fb6f4c3e289a7a",
         "type": "github"
       },
       "original": {
@@ -639,11 +639,11 @@
     },
     "nixpkgs-lib": {
       "locked": {
-        "lastModified": 1743296961,
-        "narHash": "sha256-b1EdN3cULCqtorQ4QeWgLMrd5ZGOjLSLemfa00heasc=",
+        "lastModified": 1748740939,
+        "narHash": "sha256-rQaysilft1aVMwF14xIdGS3sj1yHlI6oKQNBRTF40cc=",
         "owner": "nix-community",
         "repo": "nixpkgs.lib",
-        "rev": "e4822aea2a6d1cdd36653c134cacfd64c97ff4fa",
+        "rev": "656a64127e9d791a334452c6b6606d17539476e2",
         "type": "github"
       },
       "original": {
@@ -785,11 +785,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1748243702,
-        "narHash": "sha256-9YzfeN8CB6SzNPyPm2XjRRqSixDopTapaRsnTpXUEY8=",
+        "lastModified": 1749194973,
+        "narHash": "sha256-eEy8cuS0mZ2j/r/FE0/LYBSBcIs/MKOIVakwHVuqTfk=",
         "owner": "numtide",
         "repo": "treefmt-nix",
-        "rev": "1f3f7b784643d488ba4bf315638b2b0a4c5fb007",
+        "rev": "a05be418a1af1198ca0f63facb13c985db4cb3c5",
         "type": "github"
       },
       "original": {
@@ -817,11 +817,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1747580753,
-        "narHash": "sha256-gIf/li/Gdz4M56Tq5gA9rDBPQx90dRzU0LYPDXO3xeQ=",
+        "lastModified": 1748669016,
+        "narHash": "sha256-Ltqnm7OdAoDU0iUB9+QWkBTMUof8lgoLCpkUbyizZHU=",
         "owner": "tiiuae",
         "repo": "wireguard-gui",
-        "rev": "dc8a43f99af5efaa1df49970edbb154fec30f070",
+        "rev": "9eb3933235e0adf7c041fb8c5e0d5e1af6ee0db2",
         "type": "github"
       },
       "original": {
