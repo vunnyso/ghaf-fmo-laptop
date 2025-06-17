@@ -6,18 +6,18 @@
     hardware-alienware-m18-r2.imports = [
       inputs.ghaf.nixosModules.hardware-alienware-m18-r2
       ./resources/alienware-m18-r2.nix
-      ./definition/external-usb.nix
+      ./usb
     ];
     hardware-dell-latitude-7230.imports = [
       inputs.ghaf.nixosModules.hardware-dell-latitude-7230
       ./resources/dell-latitude-7230.nix
       ./definition/dell-latitude-7230.nix
-      ./definition/external-usb.nix
+      ./usb
     ];
     hardware-dell-latitude-7330.imports = [
       inputs.ghaf.nixosModules.hardware-dell-latitude-7330
       ./resources/dell-latitude-7330.nix
-      ./definition/external-usb.nix
+      ./usb
     ];
     hardware-demo-tower-mk1.imports = [
       inputs.ghaf.nixosModules.hardware-demo-tower-mk1
@@ -32,12 +32,12 @@
     hardware-lenovo-x1-carbon-gen11.imports = [
       inputs.ghaf.nixosModules.hardware-lenovo-x1-carbon-gen11
       ./resources/lenovo-x1-carbon-gen11.nix
-      ./definition/external-usb.nix
+      ./usb
     ];
     hardware-lenovo-x1-carbon-gen12.imports = [
       inputs.ghaf.nixosModules.hardware-lenovo-x1-carbon-gen12
       ./resources/lenovo-x1-carbon-gen12.nix
-      ./definition/external-usb.nix
+      ./usb
     ];
   };
 }

@@ -15,11 +15,6 @@ let
     ;
 
   # Temporary until USB passthrough is fixed
-  yubikeysExtraArgs = flatten (
-    mapAttrsToList (
-      n: v: if (strings.hasPrefix "yubikey" n) then v else [ ]
-    ) config.ghaf.hardware.usb.external.qemuExtraArgs
-  );
   gnssExtraArgs = flatten (
     mapAttrsToList (
       n: v: if (strings.hasPrefix "gnss" n) then v else [ ]
@@ -115,7 +110,7 @@ in
       ]; # microvm.shares
 
       # Extra args for Qemu
-      qemu.extraArgs = yubikeysExtraArgs ++ gnssExtraArgs ++ xboxExtraArgs ++ crazyflieExtraArgs;
+      qemu.extraArgs = gnssExtraArgs ++ xboxExtraArgs ++ crazyflieExtraArgs;
     }; # microvm
 
     # Terminal and fonts
@@ -132,6 +127,11 @@ in
     '';
 
     users.groups."plugdev" = { };
+
+    # Udev rules for Yubikey
+    services.udev.extraRules = ''
+      KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="1050", ATTRS{idProduct}=="0407", TAG+="uaccess", GROUP="kvm", MODE="0666"
+    '';
 
     # Services
     services = {
