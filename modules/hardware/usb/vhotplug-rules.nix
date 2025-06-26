@@ -13,6 +13,11 @@
             class = 11;
             description = "Chip/SmartCard (e.g. YubiKey)";
           }
+          {
+            vendorId = "0403";
+            productId = "6015";
+            description = "FTDI FT231X USB UART to access GPS device";
+          }
         ];
       }
     ];
