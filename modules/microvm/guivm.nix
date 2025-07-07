@@ -28,18 +28,20 @@ let
         buildCommand = old.buildCommand + "rm -rf \"$out/share/applications\"";
       }
     );
+  nvidiaEnabled = config.ghaf.graphics.nvidia-setup.enable;
+  chromeExtraArgs =
+    optionalString (!nvidiaEnabled) ",UseOzonePlatform"
+    + optionalString nvidiaEnabled ",VaapiOnNvidiaGPUs";
 
   google-chrome = (rmDesktopEntry pkgs.google-chrome).override {
     commandLineArgs = [
       # Hardware video encoding on Chrome on Linux.
       # See chrome://gpu to verify.
       # Enable H.265 video codec support.
-      "--enable-features=AcceleratedVideoDecodeLinuxGL,VaapiVideoDecoder,VaapiVideoEncoder,WebRtcAllowH265Receive,VaapiIgnoreDriverChecks,WaylandLinuxDrmSyncobj${
-        optionalString (!config.ghaf.graphics.nvidia-setup.enable) ",UseOzonePlatform"
-      }"
+      "--enable-features=AcceleratedVideoDecodeLinuxGL,VaapiVideoDecoder,VaapiVideoEncoder,WebRtcAllowH265Receive,VaapiIgnoreDriverChecks,WaylandLinuxDrmSyncobj${chromeExtraArgs}"
       "--force-fieldtrials=WebRTC-Video-H26xPacketBuffer/Enabled"
       "--enable-zero-copy"
-    ] ++ optionals (!config.ghaf.graphics.nvidia-setup.enable) [ "--ozone-platform=wayland" ];
+    ] ++ optionals (!nvidiaEnabled) [ "--ozone-platform=wayland" ];
   };
 
 in
@@ -53,7 +55,7 @@ in
 
       #Primary drivers for the integrated GPU should not be enabledd for prime case
       intel-setup = {
-        enable = !config.ghaf.graphics.nvidia-setup.enable;
+        enable = !nvidiaEnabled;
       };
     };
 
