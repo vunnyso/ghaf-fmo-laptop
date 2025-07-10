@@ -186,11 +186,11 @@
         "nixpkgs-lib": "nixpkgs-lib"
       },
       "locked": {
-        "lastModified": 1749398372,
-        "narHash": "sha256-tYBdgS56eXYaWVW3fsnPQ/nFlgWi/Z2Ymhyu21zVM98=",
+        "lastModified": 1751413152,
+        "narHash": "sha256-Tyw1RjYEsp5scoigs1384gIg6e0GoBVjms4aXFfRssQ=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "9305fe4e5c2a6fcf5ba6a3ff155720fbe4076569",
+        "rev": "77826244401ea9de6e3bac47c2db46005e1f30b5",
         "type": "github"
       },
       "original": {
@@ -299,7 +299,6 @@
         "ghafpkgs": "ghafpkgs",
         "git-hooks-nix": "git-hooks-nix",
         "givc": "givc",
-        "impermanence": "impermanence",
         "jetpack-nixos": "jetpack-nixos",
         "microvm": "microvm",
         "nixos-generators": "nixos-generators",
@@ -308,16 +307,17 @@
           "nixpkgs"
         ],
         "pkgs-by-name-for-flake-parts": "pkgs-by-name-for-flake-parts",
+        "preservation": "preservation",
         "systems": "systems",
         "treefmt-nix": "treefmt-nix",
         "wireguard-gui": "wireguard-gui"
       },
       "locked": {
-        "lastModified": 1750150248,
-        "narHash": "sha256-6s0+KwJRZLBu/JtXZ0AVhhKo4gBd7lYp4Vqubm3u3ac=",
+        "lastModified": 1752135953,
+        "narHash": "sha256-kq25OeAyz4Dr2k+9ftUH2jlewtDLUybQNwvN4SUJx/4=",
         "owner": "tiiuae",
         "repo": "ghaf",
-        "rev": "e0049a0962e933e02cb253150ef6aeb913602e76",
+        "rev": "4e262d640906ac49e9e15a9c78a0947590cbef85",
         "type": "github"
       },
       "original": {
@@ -408,11 +408,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1749636823,
-        "narHash": "sha256-WUaIlOlPLyPgz9be7fqWJA5iG6rHcGRtLERSCfUDne4=",
+        "lastModified": 1750779888,
+        "narHash": "sha256-wibppH3g/E2lxU43ZQHC5yA/7kIKLGxVEnsnVK1BtRg=",
         "owner": "cachix",
         "repo": "git-hooks.nix",
-        "rev": "623c56286de5a3193aa38891a6991b28f9bab056",
+        "rev": "16ec914f6fb6f599ce988427d9d94efddf25fe6d",
         "type": "github"
       },
       "original": {
@@ -493,32 +493,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1749799799,
-        "narHash": "sha256-rYZRaGoWDCv9zfSCWRBph9JAYXxxHfsf2KC/8K1KNHE=",
+        "lastModified": 1750090819,
+        "narHash": "sha256-xZ7RGdWFQxKJ0+gNgFPSO4l21rJOeoI3lvgYkZ4pO/E=",
         "owner": "tiiuae",
         "repo": "ghaf-givc",
-        "rev": "779ed063cc9a951c982679ae4d0a39909f6c17e4",
+        "rev": "70f5ea2e7db92570467bb8e81276a94a69e2c123",
         "type": "github"
       },
       "original": {
         "owner": "tiiuae",
         "repo": "ghaf-givc",
-        "type": "github"
-      }
-    },
-    "impermanence": {
-      "locked": {
-        "lastModified": 1728049659,
-        "narHash": "sha256-lGtad92Y/TnqpXRlZ1syiEq5czpvblKmcypeqGPiVF4=",
-        "owner": "nix-community",
-        "repo": "impermanence",
-        "rev": "32b1094d28d5fbedcc85a403bc08c8877b396255",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "impermanence",
-        "rev": "32b1094d28d5fbedcc85a403bc08c8877b396255",
         "type": "github"
       }
     },
@@ -640,11 +624,11 @@
     },
     "nixpkgs-lib": {
       "locked": {
-        "lastModified": 1748740939,
-        "narHash": "sha256-rQaysilft1aVMwF14xIdGS3sj1yHlI6oKQNBRTF40cc=",
+        "lastModified": 1751159883,
+        "narHash": "sha256-urW/Ylk9FIfvXfliA1ywh75yszAbiTEVgpPeinFyVZo=",
         "owner": "nix-community",
         "repo": "nixpkgs.lib",
-        "rev": "656a64127e9d791a334452c6b6606d17539476e2",
+        "rev": "14a40a1d7fb9afa4739275ac642ed7301a9ba1ab",
         "type": "github"
       },
       "original": {
@@ -664,11 +648,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1750662569,
-        "narHash": "sha256-dipmdyCH+fWodm9JYBE18i7yuiU1WY9l8nLpkrjZlcU=",
+        "lastModified": 1752043847,
+        "narHash": "sha256-EGdkF6yTsG1GGZPpPdAmd51+da2O9iU6OJliCGXj1K8=",
         "ref": "refs/heads/main",
-        "rev": "4f322b3fbbe8951feb0771e3ec4af6380c6f5c8d",
-        "revCount": 415,
+        "rev": "537c6535aa320c222b45e3553394fa1d330cd200",
+        "revCount": 419,
         "type": "git",
         "url": "ssh://git@github.com/tiiuae/onboarding-agent"
       },
@@ -690,6 +674,21 @@
         "owner": "drupol",
         "repo": "pkgs-by-name-for-flake-parts",
         "rev": "7013e769c509a97cfe53c5924b45b273021225c3",
+        "type": "github"
+      }
+    },
+    "preservation": {
+      "locked": {
+        "lastModified": 1738541138,
+        "narHash": "sha256-isT+jR8P8UFh5PJDzGHYXqVEHEZa0D5WvT5kfMf14AM=",
+        "owner": "nix-community",
+        "repo": "preservation",
+        "rev": "2f16754f9f6b766c1429375ab7417dc81cc90a63",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "preservation",
         "type": "github"
       }
     },
@@ -786,11 +785,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1749194973,
-        "narHash": "sha256-eEy8cuS0mZ2j/r/FE0/LYBSBcIs/MKOIVakwHVuqTfk=",
+        "lastModified": 1752055615,
+        "narHash": "sha256-19m7P4O/Aw/6+CzncWMAJu89JaKeMh3aMle1CNQSIwM=",
         "owner": "numtide",
         "repo": "treefmt-nix",
-        "rev": "a05be418a1af1198ca0f63facb13c985db4cb3c5",
+        "rev": "c9d477b5d5bd7f26adddd3f96cfd6a904768d4f9",
         "type": "github"
       },
       "original": {
