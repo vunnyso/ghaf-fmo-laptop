@@ -53,9 +53,8 @@ in
         enable = any (d: d.vendorId == "10de") config.ghaf.common.hardware.gpus;
       };
 
-      #Primary drivers for the integrated GPU should not be enabledd for prime case
       intel-setup = {
-        enable = !nvidiaEnabled;
+        enable = any (d: d.vendorId == "8086") config.ghaf.common.hardware.gpus;
       };
     };
 
