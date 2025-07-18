@@ -22,10 +22,9 @@
 
   inputs = {
 
-    #TODO: this needs to be pinned to the version that ghaf is currently pinned to.
-    # rather painful. though it can be pinned to official releases this way.
+    # Pinned to the version that ghaf is currently pinned to.
     nixpkgs = {
-      url = "github:NixOS/nixpkgs?rev=063f43f2dbdef86376cc29ad646c45c46e93234c";
+      url = "github:tiiuae/nixpkgs/nixos-unstable-fix-ibus";
     };
 
     ghaf = {
