@@ -313,11 +313,11 @@
         "wireguard-gui": "wireguard-gui"
       },
       "locked": {
-        "lastModified": 1754301883,
-        "narHash": "sha256-9IX3ye/04Q13+zcvA2dgTKnQYEUiHqwcaEAlU5/ODW0=",
+        "lastModified": 1754400400,
+        "narHash": "sha256-JRK8DUR9kJPSo7jlDDk0OvS75TVLlHwjQ+SSzHTzo1Q=",
         "owner": "tiiuae",
         "repo": "ghaf",
-        "rev": "b96056a9bfe90c2e0e94cf35ff8dd8755f95383c",
+        "rev": "cf9631a3ab0073327ab29530cc0bcca5e4325368",
         "type": "github"
       },
       "original": {
@@ -608,17 +608,17 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1753549186,
-        "narHash": "sha256-Znl7rzuxKg/Mdm6AhimcKynM7V3YeNDIcLjBuoBcmNs=",
-        "owner": "NixOS",
+        "lastModified": 1754385658,
+        "narHash": "sha256-cKbpmalwH8sQ+EnuxbrTZAFt7pZYwblIkzGJVysi8hw=",
+        "owner": "tiiuae",
         "repo": "nixpkgs",
-        "rev": "17f6bd177404d6d43017595c5264756764444ab8",
+        "rev": "7d6ef37eff31ba209f5e8a3ab8f1a9f5393e4f0a",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
+        "owner": "tiiuae",
+        "ref": "fix-qemu",
         "repo": "nixpkgs",
-        "rev": "17f6bd177404d6d43017595c5264756764444ab8",
         "type": "github"
       }
     },
