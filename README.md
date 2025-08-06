@@ -59,8 +59,8 @@ nix flake show
 
 just show
 
-# select a target to build
-just build .#fmo-lenovo-x1-gen11-debug-installer
+# select a target to build and provide extra arguments instead of "" if any
+just build .#fmo-lenovo-x1-gen11-debug-installer ""
 
 # insert an ssd to copy the installer to and find the name e.g. /dev/sdb
 sudo lsblk
@@ -113,7 +113,7 @@ nixos-rebuild --flake .#fmo-lenovo-x1-gen11-debug --target-host "root@ghaf-host"
 You can override the default location for the `.netrc` file by specifying it on the command line before any of the default commands.
 
 ``` shell
-just NETRC_FILE=/home/user/.my-secrets build .#fmo-lenovo-x1-gen11-debug
+just NETRC_FILE=/home/user/.my-secrets build .#fmo-lenovo-x1-gen11-debug ""
 
 ```
 
