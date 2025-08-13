@@ -4,11 +4,17 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }:
 let
 
   appuser = config.ghaf.users.appUser.name;
+  inherit (lib)
+    mkForce
+    ;
+  inherit (config.ghaf.networking) hosts;
+
 in
 {
   # TODO implement appvm interface and remove these imports
@@ -31,6 +37,28 @@ in
 
     # Use givc service & app manager
     # TODO This is currently not supported in givc as it has a microvm dependency
+
+    givc.appvm.enable = mkForce false;
+    givc.sysvm = {
+      enable = true;
+      inherit (config.microvm.vms.docker-vm.config.config.givc.appvm)
+        admin
+        tls
+        transport
+        ;
+      eventProxy = [
+        {
+          transport = {
+            name = "docker-vm";
+            addr = hosts."docker-vm".ipv4;
+            port = "9191";
+            protocol = "tcp";
+          };
+          producer = false;
+        }
+      ];
+      debug = true;
+    };
 
     # MTU
     systemd.network.links."10-ethint0".extraConfig = "MTUBytes=1372";

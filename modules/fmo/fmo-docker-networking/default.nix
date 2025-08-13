@@ -54,7 +54,7 @@ in
     # NAT translation for docker bridge network
     # used by operational-nats
     networking.nat = {
-      enable = true;
+      enable = lib.mkForce true;
       externalInterface = "ethint0";
       inherit (cfg) internalIPs;
     };

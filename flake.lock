@@ -28,17 +28,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1749713745,
-        "narHash": "sha256-c2Q1H83WuI8zr9Y7gq6qm6LoInFrwYjmqJH5wK5SRLw=",
+        "lastModified": 1755075041,
+        "narHash": "sha256-q6dbFneNE2YOhfh8XsLFuEtbsQcabDuf/9PCpfk5dC0=",
         "owner": "tiiuae",
         "repo": "ci-test-automation",
-        "rev": "e532cbf54685149d6a71e90ddd9b842b3db575e6",
+        "rev": "524936c307e596b3d76390ba1a4c21ccfe5c9e05",
         "type": "github"
       },
       "original": {
         "owner": "tiiuae",
         "repo": "ci-test-automation",
-        "rev": "e532cbf54685149d6a71e90ddd9b842b3db575e6",
         "type": "github"
       }
     },
@@ -313,11 +312,11 @@
         "wireguard-gui": "wireguard-gui"
       },
       "locked": {
-        "lastModified": 1754400400,
-        "narHash": "sha256-JRK8DUR9kJPSo7jlDDk0OvS75TVLlHwjQ+SSzHTzo1Q=",
-        "owner": "tiiuae",
+        "lastModified": 1755094127,
+        "narHash": "sha256-aOkQPH7Akh9ZyXXew/7LL5KoO/uz+mnT2exMh0dcLw4=",
+        "owner": "vunnyso",
         "repo": "ghaf",
-        "rev": "cf9631a3ab0073327ab29530cc0bcca5e4325368",
+        "rev": "a891f7544756cf3ffd94f6986dddd9610e7ebd0b",
         "type": "github"
       },
       "original": {
